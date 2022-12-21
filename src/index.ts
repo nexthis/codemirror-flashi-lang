@@ -9,7 +9,6 @@ import {
 } from "@codemirror/language";
 import { completeFromList } from "@codemirror/autocomplete";
 import { styleTags, tags as t } from "@lezer/highlight";
-import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
 
 export const FLASHILanguage = LRLanguage.define({
   parser: parser.configure({
@@ -40,14 +39,6 @@ export const FLASHICompletion = FLASHILanguage.data.of({
   ]),
 });
 
-const FLASHIHighlightStyle = HighlightStyle.define([
-  { tag: t.keyword, color: "#33b7f3" },
-  { tag: t.comment, color: "#7d8799" },
-]);
-
 export function flashi() {
-  return new LanguageSupport(FLASHILanguage, [
-    FLASHICompletion,
-    syntaxHighlighting(FLASHIHighlightStyle),
-  ]);
+  return new LanguageSupport(FLASHILanguage, [FLASHICompletion]);
 }
